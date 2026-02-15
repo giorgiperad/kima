@@ -55,7 +55,7 @@ export function MainNav({ items, children }: MainNavProps) {
         transition={{ duration: 0.5 }}
       >
         <Link href="/" className="hidden items-center space-x-2 md:flex">
-          <span className={cn(norican.className, "text-2xl")}>
+          <span className={cn(norican.className, "text-2xl")}> 
             {siteConfig.authorName}
           </span>
         </Link>
@@ -66,7 +66,6 @@ export function MainNav({ items, children }: MainNavProps) {
             <motion.div
               key={index}
               custom={index}
-      <LanguageSwitcher />
               initial="hidden"
               animate="visible"
               variants={navItemVariants}
@@ -89,6 +88,7 @@ export function MainNav({ items, children }: MainNavProps) {
           ))}
         </nav>
       ) : null}
+      <LanguageSwitcher />
       <motion.button
         className="flex items-center space-x-2 md:hidden"
         onClick={() => setShowMobileMenu(!showMobileMenu)}
