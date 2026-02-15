@@ -1,0 +1,11 @@
+{
+  "All": "All",
+  "Personal": "Personal",
+  "Professional": "Professional",
+  "System": "System",
+  "Synthwave": "Synthwave",
+  "View resume": "View resume",
+  "Applied AI Engineer": "Applied AI Engineer",
+  "Naman Barkiya": "Naman Barkiya"
+  // ...add more translations as you extract static text
+}

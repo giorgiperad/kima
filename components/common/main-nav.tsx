@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Norican } from "next/font/google";
 import Link from "next/link";
+import LanguageSwitcher from "@/components/common/language-switcher";
 import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 import * as React from "react";
 
@@ -65,6 +66,7 @@ export function MainNav({ items, children }: MainNavProps) {
             <motion.div
               key={index}
               custom={index}
+      <LanguageSwitcher />
               initial="hidden"
               animate="visible"
               variants={navItemVariants}

@@ -5,6 +5,7 @@ import ProjectCard from "@/components/projects/project-card";
 import { ResponsiveTabs } from "@/components/ui/responsive-tabs";
 import { pagesConfig } from "@/config/pages";
 import { Projects } from "@/config/projects";
+import { useTranslations } from 'next-intl';
 
 export const metadata: Metadata = {
   title: pagesConfig.projects.metadata.title,
@@ -28,21 +29,21 @@ const renderContent = (tabVal: string) => {
   );
 };
 
-export default function ProjectsPage() {
+  const t = useTranslations();
   const tabItems = [
     {
       value: "all",
-      label: "All",
+      label: t('All'),
       content: renderContent("all"),
     },
     {
       value: "personal",
-      label: "Personal",
+      label: t('Personal'),
       content: renderContent("personal"),
     },
     {
       value: "professional",
-      label: "Professional",
+      label: t('Professional'),
       content: renderContent("professional"),
     },
   ];

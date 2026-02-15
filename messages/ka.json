@@ -1,0 +1,11 @@
+{
+  "All": "ყველა",
+  "Personal": "პირადი",
+  "Professional": "პროფესიული",
+  "System": "სისტემა",
+  "Synthwave": "სინთვეივი",
+  "View resume": "რეზიუმეს ნახვა",
+  "Applied AI Engineer": "აპლიკაციური AI ინჟინერი",
+  "Naman Barkiya": "ნამან ბარკია"
+  // ...add more translations as you extract static text
+}

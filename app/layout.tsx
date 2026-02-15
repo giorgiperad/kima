@@ -10,6 +10,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { ModalProvider } from "@/providers/modal-provider";
+import I18nProvider from "@/providers/i18n-provider";
+import { getRequestConfig } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { readFileSync } from 'fs';
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -24,6 +28,7 @@ const fontHeading = localFont({
 
 interface RootLayoutProps {
   children: React.ReactNode;
+  params: { locale: string };
 }
 
 export const metadata = {
@@ -95,14 +100,22 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }: RootLayoutProps) {
   const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID;
   if (!GA_ID) {
     throw new Error("Missing Google Analytics ID");
   }
 
+  // Get locale from params
+  const locale = (typeof params !== 'undefined' && params.locale) ? params.locale : 'en';
+  let messages = {};
+  try {
+    messages = JSON.parse(readFileSync(`./messages/${locale}.json`, 'utf8'));
+  } catch (e) {
+    notFound();
+  }
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head />
       <body
         className={cn(
@@ -111,25 +124,27 @@ export default function RootLayout({ children }: RootLayoutProps) {
           fontHeading.variable
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          themes={[
-            "light",
-            "dark",
-            "retro",
-            "cyberpunk",
-            "paper",
-            "aurora",
-            "synthwave",
-          ]}
-        >
-          {children}
-          <Analytics />
-          <Toaster />
-          <ModalProvider />
-        </ThemeProvider>
+        <I18nProvider locale={locale} messages={messages}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            themes={[
+              "light",
+              "dark",
+              "retro",
+              "cyberpunk",
+              "paper",
+              "aurora",
+              "synthwave",
+            ]}
+          >
+            {children}
+            <Analytics />
+            <Toaster />
+            <ModalProvider />
+          </ThemeProvider>
+        </I18nProvider>
       </body>
       <GoogleAnalytics gaId={GA_ID} />
     </html>
