@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Norican } from "next/font/google";
 import Link from "next/link";
-import LanguageSwitcher from "@/components/common/language-switcher";
+
 import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 import * as React from "react";
 
@@ -88,7 +88,7 @@ export function MainNav({ items, children }: MainNavProps) {
           ))}
         </nav>
       ) : null}
-      <LanguageSwitcher />
+
       <motion.button
         className="flex items-center space-x-2 md:hidden"
         onClick={() => setShowMobileMenu(!showMobileMenu)}

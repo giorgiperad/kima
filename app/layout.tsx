@@ -100,16 +100,18 @@ export const metadata = {
   },
 };
 
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID;
   if (!GA_ID) {
     throw new Error("Missing Google Analytics ID");
   }
 
-  // Get locale from params
-  const locale = (typeof params !== 'undefined' && params.locale) ? params.locale : 'en';
+  // Hardcode Georgian locale
+  const locale = 'ka';
   let messages = {};
   try {
-    messages = JSON.parse(readFileSync(`./messages/${locale}.json`, 'utf8'));
+    messages = JSON.parse(readFileSync(`./messages/ka.json`, 'utf8'));
   } catch (e) {
     notFound();
   }
